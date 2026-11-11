@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>VideoHub — आपकी वीडियो लाइब्रेरी</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="logo">▶</span> VideoHub</div>
+  <div class="search"><input id="search" placeholder="वीडियो खोजें..."></div>
+  <button class="uploadBtn" onclick="openUpload()">+ वीडियो अपलोड</button>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">YOUR VIDEO LIBRARY</p>
+      <h1>अपने वीडियो एक जगह रखें।<br><span>चलाएँ, क्वालिटी चुनें और डाउनलोड करें।</span></h1>
+      <p class="sub">मोबाइल और कंप्यूटर के लिए साफ-सुथरा वीडियो अनुभव।</p>
+      <button class="primary" onclick="openUpload()">वीडियो अपलोड करें</button>
+    </div>
+  </section>
+
+  <section class="sectionHead">
+    <div><h2>मेरे वीडियो</h2><p id="count">लोड हो रहा है...</p></div>
+  </section>
+  <section id="grid" class="grid"></section>
+  <div id="empty" class="empty" hidden>अभी कोई वीडियो नहीं है। ऊपर से पहला वीडियो अपलोड करें।</div>
+</main>
+
+<div id="playerModal" class="modal" hidden>
+  <div class="modalCard playerCard">
+    <button class="close" onclick="closePlayer()">×</button>
+    <video id="player" controls playsinline></video>
+    <div class="playerInfo">
+      <div><h2 id="playerTitle"></h2><p id="playerDesc"></p></div>
+      <div class="actions">
+        <label>Quality
+          <select id="quality" onchange="changeQuality()">
+            <option value="auto">Auto</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </label>
+        <a id="download" class="download" download>⬇ Download</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="uploadModal" class="modal" hidden>
+  <div class="modalCard">
+    <button class="close" onclick="closeUpload()">×</button>
+    <h2>नया वीडियो अपलोड करें</h2>
+    <p class="muted">MP4, WebM आदि वीडियो फाइलें अपलोड करें।</p>
+    <form id="uploadForm">
+      <label>वीडियो का नाम<input name="title" required placeholder="जैसे: मेरी नई वीडियो"></label>
+      <label>विवरण<textarea name="description" placeholder="वीडियो के बारे में..."></textarea></label>
+      <label class="filebox">वीडियो फाइल<input id="videoFile" name="video" type="file" accept="video/*" required></label>
+      <div id="progressWrap" hidden><div class="progress"><div id="progress"></div></div><small id="progressText">0%</small></div>
+      <button class="primary full" type="submit">अपलोड शुरू करें</button>
+    </form>
+    <p id="uploadMsg" class="msg"></p>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
